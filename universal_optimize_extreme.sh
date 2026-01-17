@@ -599,7 +599,7 @@ runtime_irqpin() {
     if [[ -w /proc/irq/$irq/smp_affinity ]]; then
       echo $cpu_mask > /proc/irq/$irq/smp_affinity 2>/dev/null && \
         info "MSI IRQ $irq -> CPU mask $cpu_mask"
-      ((irq_count++))
+      ((++irq_count))
       # 轮换 CPU
       if [[ $cpu_count -gt 1 ]]; then
         cpu_mask=$(( (cpu_mask << 1) % ((1 << cpu_count) - 1) + 1 ))
